@@ -3,8 +3,10 @@ package ua.kpi.dao;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Component;
 import ua.kpi.entities.Commodity;
 
+@Component
 public class CommodityDAO {
 
   private List<Commodity> commodities = new ArrayList<>();

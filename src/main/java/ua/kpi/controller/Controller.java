@@ -1,32 +1,41 @@
 package ua.kpi.controller;
 
 import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Setter;
-import org.springframework.context.ApplicationContext;
-import ua.kpi.ApplicationContextAdapter;
-import ua.kpi.SecondAdapter;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import ua.kpi.context.ContextAdapter;
 import ua.kpi.entities.Commodity;
 import ua.kpi.services.CommodityService;
 import ua.kpi.view.View;
 
 @Setter
+@Component
 public class Controller {
 
-  private CommodityService commodityService;
-  private View view;
-  private ApplicationContextAdapter adapter;
-  private SecondAdapter secondAdapter;
+  private final CommodityService commodityService;
+  private final View view;
+
+  @Qualifier("firstAdapter")
+  private final ContextAdapter adapter;
 
 
+  public Controller(CommodityService commodityService, View view,
+      @Qualifier("firstAdapter")  ContextAdapter adapter) {
+    this.commodityService = commodityService;
+    this.view = view;
+    this.adapter = adapter;
+  }
 
   public void processUser() {
     List<Commodity> all = commodityService.findAll();
     getView().print(all.toString());
-
   }
 
   private View getView(){
-    return secondAdapter.getApplicationContext().getBean("view", View.class);
+    System.out.println("adapter = " + adapter);
+    return adapter.getApplicationContext().getBean("view", View.class);
   }
 
 }

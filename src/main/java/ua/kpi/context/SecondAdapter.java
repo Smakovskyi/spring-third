@@ -1,12 +1,15 @@
-package ua.kpi;
+package ua.kpi.context;
+
 
 import lombok.Getter;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 @Getter
-public class SecondAdapter implements ApplicationContextAware {
+@Component("secondAdapter")
+public class SecondAdapter implements ApplicationContextAware, ContextAdapter {
 
   private ApplicationContext applicationContext;
 
