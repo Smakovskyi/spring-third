@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @PropertySource("classpath:config.properties")
 @Scope(scopeName = "prototype")
-public class View {
+public class View implements Viewable{
 
   @Value("${viewable.filler}")
   private String filler;

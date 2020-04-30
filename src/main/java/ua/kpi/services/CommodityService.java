@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import ua.kpi.dao.CommodityDAO;
 import ua.kpi.entities.Commodity;
 import ua.kpi.view.View;
+import ua.kpi.view.Viewable;
 
 
 @Setter
@@ -23,7 +24,7 @@ public class CommodityService {
   private final CommodityDAO commodityDAO;
 
   @Autowired
-  private View view;
+  private Viewable view;
 
   @PostConstruct
   public void init(){

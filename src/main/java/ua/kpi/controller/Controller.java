@@ -9,19 +9,20 @@ import ua.kpi.context.ContextAdapter;
 import ua.kpi.entities.Commodity;
 import ua.kpi.services.CommodityService;
 import ua.kpi.view.View;
+import ua.kpi.view.Viewable;
 
 @Setter
 @Component
 public class Controller {
 
   private final CommodityService commodityService;
-  private final View view;
+  private final Viewable view;
 
   @Qualifier("firstAdapter")
   private final ContextAdapter adapter;
 
 
-  public Controller(CommodityService commodityService, View view,
+  public Controller(CommodityService commodityService, Viewable view,
       @Qualifier("firstAdapter")  ContextAdapter adapter) {
     this.commodityService = commodityService;
     this.view = view;
@@ -33,9 +34,9 @@ public class Controller {
     getView().print(all.toString());
   }
 
-  private View getView(){
+  private Viewable getView(){
     System.out.println("adapter = " + adapter);
-    return adapter.getApplicationContext().getBean("view", View.class);
+    return adapter.getApplicationContext().getBean("view", Viewable.class);
   }
 
 }
